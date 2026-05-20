@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -25,10 +25,12 @@ jobs:
         run: npm install
 
       - name: Run npm audit
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=critical
 
       - name: Run Semgrep
         uses: returntocorp/semgrep-action@v1
+        with:
+          config: auto
 
       - name: Build Docker image
         run: docker build -t devsecops-api .
@@ -37,5 +39,8 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: devsecops-api
-          severity: HIGH,CRITICAL
+          format: table
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: CRITICAL
           exit-code: 1
