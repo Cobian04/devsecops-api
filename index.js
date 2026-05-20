@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 let tasks = [];
-eval("console.log('This is a vulnerable code snippet. Do not use eval in production!');");
+const password = "admin123";
 
 
 app.get("/tasks", (req, res) => {
