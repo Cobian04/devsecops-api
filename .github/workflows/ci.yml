@@ -27,11 +27,12 @@ jobs:
       - name: Run npm audit
         run: npm audit --audit-level=high || true
 
-      - name: Install Semgrep
-        run: pip install semgrep
-
-      - name: Run Semgrep custom rules
-        run: semgrep --config=.semgrep/password-rule.yml .
+      - name: Detect hardcoded passwords
+        run: |
+          if grep -r "const password =" .; then
+            echo "Hardcoded password detected!"
+            exit 1
+          fi
 
       - name: Build Docker image
         run: docker build -t devsecops-api .
