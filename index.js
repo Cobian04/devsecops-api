@@ -1,4 +1,3 @@
-const password = "admin123";
 const express = require("express");
 
 const app = express();

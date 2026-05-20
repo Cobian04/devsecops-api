@@ -30,7 +30,7 @@ jobs:
       - name: Run Semgrep
         uses: returntocorp/semgrep-action@v1
         with:
-          config: p/secrets
+          config: auto
 
       - name: Build Docker image
         run: docker build -t devsecops-api .
