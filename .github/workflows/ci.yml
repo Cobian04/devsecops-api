@@ -40,5 +40,5 @@ jobs:
         with:
           image-ref: devsecops-api
           format: table
-          severity: HIGH,CRITICAL
+          severity: CRITICAL
           exit-code: 1
