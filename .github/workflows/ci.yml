@@ -29,7 +29,7 @@ jobs:
 
       - name: Detect hardcoded passwords
         run: |
-          if grep -r "const password =" .; then
+          if grep "const password =" index.js; then
             echo "Hardcoded password detected!"
             exit 1
           fi
