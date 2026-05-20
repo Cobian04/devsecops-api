@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 let tasks = [];
-const password = "admin123";
+
 
 app.get("/tasks", (req, res) => {
   res.json(tasks);
