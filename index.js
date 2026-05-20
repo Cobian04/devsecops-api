@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
+const password = "admin123";
 
 let tasks = [];
 
