@@ -27,10 +27,11 @@ jobs:
       - name: Run npm audit
         run: npm audit --audit-level=high
 
-      - name: Run Semgrep
-        uses: returntocorp/semgrep-action@v1
-        with:
-          config: auto
+      - name: Install Semgrep
+        run: pip install semgrep
+
+      - name: Run Semgrep Secrets Scan
+        run: semgrep --config=p/secrets .
 
       - name: Build Docker image
         run: docker build -t devsecops-api .
